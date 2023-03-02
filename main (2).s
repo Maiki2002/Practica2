@@ -48,7 +48,7 @@ ASCII_Entero:  @Prólogo
 			cmp r0, #0x30
 			blt then @ (character < 0x30). The 0x30 is equal to '0'.
 			cmp r0,#0x39
-			bgt then (character > 0x39). The 0x39 is equal to '9'.
+			bgt then @(character > 0x39). The 0x39 is equal to '9'.
 			subs r0,r0,#0x30 @ r0 = character - 48.
 			add r3,r2,r2,lsl #2 @ r3 = r2 + (4 * r2) => 5 * r2
 			add r2,r0,r3,lsl #1 @ r2 = r0 + r3 << 1 => r0 + 10 * r2
