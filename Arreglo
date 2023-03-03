@@ -19,7 +19,8 @@ LOOP1:
 
 FOR1:
     ldr r4, [r3], #3
-    
+    mov r0, r4
+    bl ASCII_Entero
     add r2, r2, #1
     b LOOP1
 
