@@ -1,0 +1,244 @@
+.cpu cortex-m3
+	.arch armv7-m
+	.fpu softvfp
+	.eabi_attribute 20, 1
+	.eabi_attribute 21, 1
+	.eabi_attribute 23, 3
+	.eabi_attribute 24, 1
+	.eabi_attribute 25, 1
+	.eabi_attribute 26, 1
+	.eabi_attribute 30, 6
+	.eabi_attribute 34, 1
+	.eabi_attribute 18, 4
+	.file	"main.c"
+    .data
+    message:
+        .space 20 @Reserva espacio en la seccion de datos globales. 20 bytes
+	out:
+		.space 20
+
+        
+  string:
+          .space 20
+	.text
+	.align	1
+	.global	main
+	.syntax unified
+	.thumb
+	.thumb_func
+	.type	main, %function
+
+ASCII_Entero: 
+              @Prólogo
+		          push {r7}
+		          sub sp,sp,#8 
+		          adds r7,sp,#0
+		@ Argumentos r0 y r4. r0 = dirección del ASCII; r4 = el valor que contendrá el ASCII a un número entero.
+		          str r0,[r7]
+		          str r4,[r7,#4]
+		
+		@ The function body
+		ldr r2,[r7,#4] @ This is equal to r2 <- r4
+		ldr r1,[r7] @ r1 <- r0
+		
+		While:
+			ldrb r0, [r1],#1 @ O de igual manera: [r1,#1] Why this? Well... Porque carga una cadena de bytes y esto incrementa a uno.
+			cmp r0,#0
+			bne Do @ Mientras no sea NULL
+			  b exita @ Case False, please exit this.
+			
+				then: b exit @ Pues no quedará letras más por comparar, es decir, no cumplirá con lo dicho. (Ya que las comparaciones 
+			@ muestran un OR, o sea "if (character[i] < 0x30 || character[i] > 0x39)" y si ambas son verdaderas o una de ellas lo es, 
+      @ sale del programa).
+			
+		Do:
+			cmp r0, #0x30
+			blt then @ (character < 0x30). The 0x30 is equal to '0'.
+			  cmp r0,#0x39
+			  bgt then @ (character > 0x39). The 0x39 is equal to '9'.
+			    subs r0,r0,#0x30 @ r0 = character - 48.
+			    add r3,r2,r2,lsl #2 @ r3 = r2 + (4 * r2) => 5 * r2
+			    add r2,r0,r3,lsl #1 @ r2 = r0 + r3 << 1 => r0 + 10 * r2
+			    b While @ repeat when the condition is full false.
+			
+		exita:
+			@ Epílogo
+			mov r0,r2 @ We return our result or answer. Es decir, el ascii convertido a entero.
+			adds r7,r7,#8
+			mov sp,r7
+			pop {r7}
+			bx lr @ Return now
+			
+Entero_ASCII:
+              @ Prólogo
+              push {r7}
+              mov r5,r1 @ Realizo una copia para no perder aquella dirección de memoria.
+              sub sp,sp,#12
+              adds r7,sp,#0
+              @ Guardo los argumentos r0 y r1 a la memoria (pila).
+              str r0,[r7]
+              str r1,[r7,#4]
+              
+              @ Now, the function body
+              
+              ldr r2,[r7] @ r2 <- r0 Número a convertir.
+              ldr r3,[r7,#4] @ r3 <- r1 String
+              
+              ldr r1,r5 @ string original. Entretanto, r5 es un registro vacío por ahora.
+              mov r6,#10 @ divisor.
+              
+              for1a:
+                    cmp r2,#0
+                    beq Done  @ (n != 0) this is equal to (n == 0)
+                      udiv r5,r2,r6 @ (r5 = n/10)
+                      mls r4,r6,r5,r2 @ (r4 = r2 - 10*r5)
+                      add r4,r4,#0x30 @ (n % 10 + '0')
+                      strb r4,[r3],#1 @ (*character = n % 10 + '0') e incrementa a uno.
+                      udiv r2,r2,r6 @ (n/=10)
+                      b for1a @ Repetirá hasta llegar a falso.
+                      
+                 Done:
+                        mov r4,#0
+                        strb r4,[r3] @ (*character = '/0')
+                        sub r3,r3,#1 @ (p-- <- In means... Omite null).
+                        
+                        @ Damos la forma inversa.
+                        for2a:
+                              cmp r3,r1
+                              ble Exite @ (character <= string).
+                                @ swap -> Intercambia
+                                ldrb r4,[r3] @ aux_r4 = *character
+                                ldrb r5,[r1] @ aux_r5 = *string
+                                strb r4,[r1] @ *string = aux_r4
+                                strb r5,[r3] @ *character = aux_r5
+                                add r1,r1,#1 @ (string++)
+                                sub r3,r3,#1 
+                                b for2a
+                        Exite:
+                                @ Epílogo
+                                ldr r6,r3
+                                mov r0,r6 @ Retornamos el valor.
+                                adds r7,r7,#12
+                                
+                                mov sp,r7
+                                pop {r7}
+                                bx lr @ Finally we return.
+                      
+
+
+
+
+imprimir:
+	@prologo
+	push {r7}
+	sub sp, sp, #12	@¿Como se cuanto tengo que reservar?
+	add r7, sp, #0
+
+	@Argumentos de la función que provienen de main (r0, r1)
+	str r0,[r7] 		@ Direccion base del buffer
+	str r1,[r7, #4] @ Tamaño del buffer
+
+	@imprimir en consola
+	ldr r0, =1			@ indica que se imprimira en la salida estandar
+	ldr r1,[r7]		  @ Direccion base del buffer
+  ldr r2,[r7,#4]	@ Tamaño del buferr
+	mov r7, #4			@"Write"
+  svc 0x0
+	mov r3, r0			@Por convención se respalda en r3 de lo que tiene r0.
+	add r7, sp, #0
+
+	@epilogo
+	mov r0, r3
+	adds r7, r7, #12
+	mov sp, r7
+	pop {r7}
+	bx lr
+
+leer:
+	@prologo
+	push {r7}
+	sub sp, sp, #8		@¿Como se cuanto tengo que reservar?  8 por el respaldo de r0 y r1
+	add r7, sp, #0
+
+	@Argumentos de la funcion que provienen de main (r0, r1)
+	str r0, [r7] 		@Direccion base del buffer
+	str r1, [r7, #4] 	@Tamaño del buffer
+
+	ldr r0, =0			@Indica que se leerá desde la entrada estándar.
+	ldr r1, [r7]		@Asignación de la dirección del buffer.
+	ldr r2, [r7, #4]	@Asignación del tamaño del buffer
+	mov r7, #3			@Indica la salida estadar "read"
+	svc #0				@El valor de retorno se guarda en r0
+	mov r3, r0			@Por convencion se respalda en r3, lo que tiene r0
+	add r7, sp, #0
+
+	@epilogo
+	mov r0, r3
+	adds r7, r7, #8
+	mov sp, r7
+	pop {r7}
+	bx lr
+    
+main:
+	push	{r7, lr}
+	sub	sp, sp, #46 @ Obvio aquí cambia el número de campo,pero ignoro de cuánto sería.
+	add	r7, sp, #0
+	
+  @ Suponiendo que tenemos ya lo siguiente:
+  
+  ldr r4,sp
+  mov r5,#5 @ The size
+  mov r6,#0 @ Our count i = 0.
+  
+  loop1:
+        cmp r6,r5
+        bge endLoop1 @ (i >= size)
+        
+          @Argumentos de la funcion leer
+	        ldr r0, =message @ Base buffer direccion in
+	        mov r1, #20			@ tamaño del buffer
+          bl leer
+          
+          mov r1,r0 @ retornamos el valor (o string aun) leído por el usuario.
+          
+          @ Argumentos correspondientes de la función ASCII_Entero
+          mov r0,r1 @ 1er argumento, string
+          mov r4,#0 @ 2do argumento, el valor del ASCII a entero, siendo: valor = 0.
+          bl ASCII_Entero
+          
+          mov r1,r0 @ Retornamos el valor ya convertido.
+          
+          @ Proceso del arreglo (almacén de datos).
+          str r1,[r4,r6,lsl #2] @ Equal to array[i] = number;
+          add r6,r6,#1 @ (i++)
+          b loop1 @ We repeat when this is false. Well true actually to skip.
+          
+      endLoop1:
+                mov r6,#0
+                for2:
+                      cmp r6,r5
+                      bge Exit @ (i >= size)
+                        ldr r3,[r4,r6,lsl #2] @ equal to number = array[i]
+                        
+                        @ Argumentos de la función Entero_ASCII
+                        mov r0,r3 @ 1er argumento, el valor numérico que será convertido a ASCII.
+                        ldr r1,=string @ 2do argumento, el string vacío que será después almacenado por el ASCII.
+                        bl Entero_ASCII
+                        
+                        mov r1,r0 @ Retornamos, pues, el valor ya convertido a ASCII.
+                        
+                        @Argumentos de la funcion imprimir	           AQUÍ TENGO DUDA CON RESPECTO A LOS ARGUMENTOS.
+	                      ldr r0, =out		@Base buffer direccion out
+	                      mov r1, #20			@tamaño del buffer
+                        bl imprimir @ Finalmente, imprimos el resultado final.
+                        add r6,r6,#1 @ (i++)
+                        b loop2
+Exit:
+ 
+	adds	r7, r7, #46
+	mov	sp, r7
+	@ sp needed
+	pop	{r7, pc}
+	bx	lr
+	.size	main, .-main
+	.ident	"GCC: (Arm GNU Toolchain 12.2 (Build arm-12.24)) 12.2.1 20221205"
