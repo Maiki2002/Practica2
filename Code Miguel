@@ -149,6 +149,162 @@ Ascii_Entero:
 	pop	{r7}
 	bx	lr
 	
+suma_arreglo:
+	push	{r7}
+	sub	sp, sp, #20
+	add	r7, sp, #0
+	str	r0, [r7, #4]
+	str	r1, [r7]
+	movs	r3, #0
+	str	r3, [r7, #12]
+	movs	r3, #0
+	str	r3, [r7, #8]
+	b	L2
+L3:
+	ldr	r3, [r7, #8]
+	lsls	r3, r3, #2
+	ldr	r2, [r7, #4]
+	add	r3, r3, r2
+	ldr	r3, [r3]
+	ldr	r2, [r7, #12]
+	add	r3, r3, r2
+	str	r3, [r7, #12]
+	ldr	r3, [r7, #8]
+	adds	r3, r3, #1
+	str	r3, [r7, #8]
+L2:
+	ldr	r2, [r7, #8]
+	ldr	r3, [r7]
+	cmp	r2, r3
+	blt	L3
+	ldr	r3, [r7, #12]
+	mov	r0, r3
+	adds	r7, r7, #20
+	mov	sp, r7
+	@ sp needed
+	pop	{r7}
+	bx	lr
+
+int_to_ascii:
+	@ args = 0, pretend = 0, frame = 32
+	@ frame_needed = 1, uses_anonymous_args = 0
+	@ link register save eliminated.
+	push	{r7}
+	sub	sp, sp, #36
+	add	r7, sp, #0
+	str	r0, [r7, #12]
+	str	r1, [r7, #8]
+	str	r2, [r7, #4]
+	movs	r3, #0
+	str	r3, [r7, #24]
+	ldr	r3, [r7, #12]
+	cmp	r3, #0
+	bge	.L3i
+	ldr	r3, [r7, #24]
+	adds	r2, r3, #1
+	str	r2, [r7, #24]
+	mov	r2, r3
+	ldr	r3, [r7, #8]
+	add	r3, r3, r2
+	movs	r2, #45
+	strb	r2, [r3]
+	ldr	r3, [r7, #12]
+	rsbs	r3, r3, #0
+	str	r3, [r7, #12]
+	b	.L3i
+.L5i:
+	ldr	r2, [r7, #12]
+	ldr	r3, =out
+	smull	r1, r3, r3, r2
+	asrs	r1, r3, #2
+	asrs	r3, r2, #31
+	subs	r1, r1, r3
+	mov	r3, r1
+	lsls	r3, r3, #2
+	add	r3, r3, r1
+	lsls	r3, r3, #1
+	subs	r1, r2, r3
+	uxtb	r2, r1
+	ldr	r3, [r7, #24]
+	adds	r1, r3, #1
+	str	r1, [r7, #24]
+	mov	r1, r3
+	ldr	r3, [r7, #8]
+	add	r3, r3, r1
+	adds	r2, r2, #48
+	uxtb	r2, r2
+	strb	r2, [r3]
+	ldr	r3, [r7, #12]
+	ldr	r2, =out
+	smull	r1, r2, r2, r3
+	asrs	r2, r2, #2
+	asrs	r3, r3, #31
+	subs	r3, r2, r3
+	str	r3, [r7, #12]
+.L3i:
+	ldr	r3, [r7, #12]
+	cmp	r3, #0
+	ble	.L4i
+	ldr	r3, [r7, #4]
+	subs	r3, r3, #1
+	ldr	r2, [r7, #24]
+	cmp	r2, r3
+	blt	.L5i
+.L4i:
+	ldr	r3, [r7, #24]
+	ldr	r2, [r7, #8]
+	add	r3, r3, r2
+	movs	r2, #0
+	strb	r2, [r3]
+	movs	r3, #0
+	str	r3, [r7, #28]
+	b	.L6i
+.L7i:
+	ldr	r3, [r7, #28]
+	ldr	r2, [r7, #8]
+	add	r3, r3, r2
+	ldrb	r3, [r3]
+	strb	r3, [r7, #23]
+	ldr	r3, [r7, #24]
+	subs	r2, r3, #1
+	ldr	r3, [r7, #28]
+	subs	r3, r2, r3
+	mov	r2, r3
+	ldr	r3, [r7, #8]
+	add	r2, r2, r3
+	ldr	r3, [r7, #28]
+	ldr	r1, [r7, #8]
+	add	r3, r3, r1
+	ldrb	r2, [r2]	@ zero_extendqisi2
+	strb	r2, [r3]
+	ldr	r3, [r7, #24]
+	subs	r2, r3, #1
+	ldr	r3, [r7, #28]
+	subs	r3, r2, r3
+	mov	r2, r3
+	ldr	r3, [r7, #8]
+	add	r3, r3, r2
+	ldrb	r2, [r7, #23]
+	strb	r2, [r3]
+	ldr	r3, [r7, #28]
+	adds	r3, r3, #1
+	str	r3, [r7, #28]
+.L6i:
+	ldr	r3, [r7, #24]
+	lsrs	r2, r3, #31
+	add	r3, r3, r2
+	asrs	r3, r3, #1
+	mov	r2, r3
+	ldr	r3, [r7, #28]
+	cmp	r3, r2
+	blt	.L7i
+	nop
+	nop
+	adds	r7, r7, #36
+	mov	sp, r7
+	@ sp needed
+	pop	{r7}
+	bx	lr
     
 main:
 	push	{r7, lr}
@@ -197,7 +353,7 @@ LOOP1:
 	str r0, [r7, #24]
 	
 	ldr r0, =message	@Base buffer direccion in
-	ldr r1, [r7, #24]  @argumento rc
+	ldr r1, [r7, #24]   @argumento rc
 	bl Ascii_Entero
 	str r0, [r7, #28]
 	
@@ -208,8 +364,22 @@ LOOP1:
 	
 ENDLOOP1:
 	
+	mov r0, #5
+	ldr r1, [r7]
+	
+	bl suma_arreglo
+	str r0, [r7, #20]
+	
+	mov r0, #20
+	ldr r1, =out
+	ldr r2, [r7, #20]
+	
+	bl int_to_ascii
+	str r0, [r7,#24]
+	
 	@Argumentos de la funcion imprimir	
-	ldr r0, =out		@Base buffer direccion out
+	@ldr r0, =out		@Base buffer direccion out
+	ldr r0, [r7,#24]    @rc
 	mov r1, #20			@tamaño del buffer
 
 	bl imprimir
