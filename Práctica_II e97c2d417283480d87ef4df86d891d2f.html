@@ -1,0 +1,700 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Práctica_II</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="e97c2d41-7283-480d-87ef-4df86d891d2f" class="page serif"><header><h1 class="page-title">Práctica_II</h1><table class="properties"><tbody></tbody></table></header><div class="page-body"><p id="c6d18e96-ffbf-452c-9725-fa3e8f00a91f" class=""><strong>Integrantes:</strong><div class="indented"><p id="5faaf5d0-b1f7-4078-8a4f-135c9d8317d1" class="">Luna Ramírez Stephen.</p><p id="ea84c6fe-114a-40ea-93aa-da6e151c017c" class=""><mark class="highlight-blue">2203066748.</mark></p><p id="e9976cb1-2669-47f0-bebc-bd492aaa4090" class="">Salazar Jiménez Ángel Miguel.</p><p id="d7747922-2e44-446a-a2e8-94f55f458f28" class="block-color-blue">2203066846.</p><p id="e5de3332-d3b4-4c22-91a6-294b700dcd30" class="">Jiménez Cazares Fernando.</p><p id="10b0074d-bec0-4ada-8c27-340887adad76" class="block-color-blue">2173071926.</p></div></p><h2 id="bd713dc3-76ea-4a72-99d1-f8f90550dbd3" class=""><strong>Descripción del Código Ensamblador (programa)</strong></h2><p id="529e5cd3-f6d2-4c1c-9038-b677e3779d99" class="">
+</p><p id="59d78642-9d37-4d39-bc26-fdd6778752dd" class=""><strong>Si la diestra vuestra no es adversaria y el viaje nos es digno, damos inicio a las palabras, ritmo sagrado y devoto, a esta descripción: no quiero agobiar al lector con historias ásperas y largas , no sería  propicio hacerlo, pues, ¿Qué ciencia denotaría algo como ello si con mesura y claridad puede hallarse en un sólo y único párrafo la elocuencia? Seamos, equipo mío, breves y exactos a nuestra imaginación; sea ya la partida de esta meta una división clara que al leerla complete con el problema. Por lo tanto, las acciones se partirán en partes donde cada una de éstas tendrán su exacta interpretación. Es decir, mediante el código ensamblado se mostrará sus funciones  (subrutinas), a las cuales se darán su breve explicación. He aquí, pues, las siguientes secciones:</strong></p><h3 id="94d4c372-da61-49b7-91cb-06b919ff413d" class="">Subrutina 1. Leer (entrada al programa)</h3><p id="a74e975d-641e-4820-ae7b-410ae1f39ed8" class=""><strong>Es necesario tomar en cuenta, que los argumentos que necesitamos para que esta función funcione, provengan de la función principal (main). Los argumentos son:</strong></p><ul id="1f847694-33ba-44dc-95ee-ab838f13891a" class="bulleted-list"><li style="list-style-type:disc"><strong>Dirección base del buffer</strong></li></ul><ul id="08d65643-494f-4505-bd83-46b1cb94a004" class="bulleted-list"><li style="list-style-type:disc"><strong>Tamaño del buffer</strong></li></ul><p id="f551f66a-134f-4547-ba30-a04647741db6" class=""><strong>Prólogo. </strong></p><p id="637ba388-6b2d-46e3-b95e-ae28f29ba521" class=""><strong>En esta sección, lo primero que se debe de tomar en cuenta es la creación del marco. Para ello, debemos tomar en cuenta los argumentos que vamos a respaldar. En este caso van a ser 2 registros para respaldar los argumentos provenientes del main ( r0, r1). Es decir, que tenemos que reservar espacio para los registros que vamos a ocupar. </strong></p><p id="229e198f-d9ab-4e72-901f-73af0c846597" class="">
+</p><p id="d23193b4-f2a7-4b15-ae0b-8a108431ffff" class=""><strong>Cuerpo de la función:</strong></p><p id="ba568a2c-cbf7-4cc4-b7e3-0b11b20dd961" class=""><strong>Posteriormente, vamos a cargar en los registros r0, r1 y r2, los valores que nos indican  en la siguiente tabla:</strong></p><p id="744d112c-111f-40d8-8702-6ce6ce98c658" class=""><strong><a href="https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#arm-32_bit_EABI">https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#arm-32_bit_EABI</a></strong></p><p id="2678f142-2bf4-4c90-a2a5-e461f6720294" class=""><strong>Esto con la finalidad de indicarle al sistema operativo que necesitamos entrar en modo de escritura (los valores serán recibidos desde la consola, es decir, la entrada estándar) </strong></p><p id="8a76b99f-b4a4-4f5e-9038-48eeff8d7a2a" class=""><strong>Una vez que establecemos los registros correspondientes con los valores indicados en la tabla, llamamos al sistema. El valor obtenido se almacenara en r0 (esto por convención). </strong></p><p id="3503f8ee-80bc-4dbe-9113-bc2db6013eef" class="">
+</p><p id="740ba5c4-e98a-4785-a16f-4cc3efc8bca3" class=""><strong>Prologo:</strong></p><p id="913776a4-9d86-49d7-a24c-09a17a50840f" class=""><strong>Lo siguiente que vamos a hacer, es liberar el marco de la función (recuperar el espacio que pedimos prestado) siguiendo las convenciones de ARM. </strong></p><h3 id="c55f0c86-2ede-40a7-9e37-5107774483fa" class="">Subrutina 2. Imprimir (salida al programa, el que otorga el resultado final)</h3><p id="2315ed46-b127-4788-a501-705c8f6d864a" class=""><strong>En esta subrutina, es muy similar lo que se debe de hacer como en la función de “leer”. </strong></p><p id="63261a6f-0190-4702-8685-ce128799d586" class=""><strong>Sólo que aquí, la dirección base del buffer tiene que ser completamente diferente a la dirección del buffer para leer. </strong></p><p id="2a14ee8f-9348-4e6d-ad03-b08554c801ef" class=""><strong>Prologo:</strong></p><p id="c88a3a95-0f20-42d9-acfa-8f5b9e922414" class=""><strong>Se debe de tomar en cuenta la creación del marco. Para ello, debemos tomar en cuenta los argumentos que vamos a respaldar. En este caso van a ser 2 registros para respaldar los argumentos provenientes del main ( r0, r1). Es decir, que tenemos que reservar espacio para los registros que vamos a ocupar. </strong></p><p id="ad446aa8-d12c-4185-a497-69fae475e562" class="">
+</p><p id="cb055d98-93c1-4845-80d2-d2a7546bc203" class=""><strong>Cuerpo de la función:</strong></p><p id="8639b972-8b75-4622-9298-d137b10dfcd7" class=""><strong>Lo que va a cambiar aquí, es el valor de r0. Ya que este valor, es diferente al valor que se coloca para leer. </strong></p><p id="f1b5edbd-ec93-47c9-a23c-acc7d258cf48" class=""><strong>Los demás registros llevaran los valores que se indican en la tabla anterior. </strong></p><p id="3674e376-d24b-4c1d-ab9c-eb3d079ae6b5" class=""><strong>Una vez que establecemos los registros correspondientes con los valores indicados en la tabla, llamamos al sistema. </strong></p><p id="07bea723-b3d3-4882-b5de-b0ec0fb1b0ec" class="">
+</p><p id="ca9735da-4b23-4276-a5cd-8a3969491949" class=""><strong>Prologo:</strong></p><p id="a4a782e9-9aa1-43f6-b696-96b773b89440" class=""><strong>Lo siguiente que vamos a hacer, es liberar el marco de la función (recuperar el espacio que pedimos prestado) siguiendo las convenciones de ARM. </strong></p><h3 id="dc1e7849-f753-4ca4-93aa-97c6e4b1adc6" class="">Subrutina 3. ASCII_Entero (aquél que convierte una cadena de caracteres a números enteros [positivos])</h3><p id="67195a1a-a518-40b5-aa3d-1d6b5dd7e0b1" class="">
+</p><p id="54d20872-ef36-468b-a517-da996a84584b" class=""><strong>Ante  esta función (llamase subrutina) procesa dos argumentos que son vistos (a bajo nivel) como registros: registro r0 y registro r4. La primera contendrá la dirección de la cadena; y la otra tendrá ese mismo, pero en valor numérico (después de haberlo convertido, por supuesto). Gracias a la pila </strong><em><strong>stack </strong></em><strong>denotamos  tres funcionalidades importantes para hacer o invocar a una función, que son las siguientes:  prólogo, el cuerpo de la función y el epílogo. A cada una de éstas tienen su propio camino y su propia diferencia cuya cual es importante mencionar para dar entender su funcionamiento, veamos:</strong></p><ul id="9dfb6f5c-7ca9-4227-b70d-a4b1c5108de9" class="bulleted-list"><li style="list-style-type:disc"><strong>Prólogo (</strong><em><strong>The begining</strong></em><strong>)</strong></li></ul><p id="80c03c49-b63c-4786-9e36-b14ee0036860" class=""><strong>El prólogo no es más que nada el almacén de la pila (</strong><em><strong>Push</strong></em><strong>, entrada o asignar) donde primero se hace mencionar su guardado, los valores (registros) que contendrá, dando así el espacio de uso a utilizar. Este espacio otorga el guardado (</strong><em><strong>they called store or store address</strong></em><strong>) a una específica dirección de memoria, dependiendo del campo que ha sido ya asignado anteriormente, para después utilizarlo (con esa dirección misma) hacia otro registro que llevará su dato correspondido. No obstante, ARM menciona que para entrar a cada campo de memoria o dirección sean siempre vistos a múltiplos de ocho, no sin olvidar que el conteo es de cuatro para cada pedazo de la pila (direcciones de memoria), así con ello tenemos nuestros argumentos (los datos) ya respaldados a otros (ya que esto es muy importante y bueno para el reciclo de registros) con seguridad.</strong></p><p id="e16ad4c8-b93f-4e71-b84a-c8b64beea10d" class="">
+</p><ul id="bc25a276-78fb-45f9-bdb8-d54ac8775a0e" class="bulleted-list"><li style="list-style-type:disc"><strong>Cuerpo de la Función (</strong><em><strong>The Function Body</strong></em><strong>)</strong></li></ul><p id="d8b3f8bd-f0bf-4a4a-9552-049ba3805e96" class=""><strong>En el cuerpo de la subrutina o función se encontrará las instrucciones a realizar o las dichas que queremos desear para que la propia máquina pueda hacer su trabajo (o el de nosotros), no sin antes cargar los datos guardados anteriormente en una respectiva dirección de memoria (</strong><em><strong>load or load the address</strong></em><strong>), para posteriormente usar o modificar los valores a ofrecer. Con esto (como bien se observa en el código ensamblador) se da a conocer las instrucciones, o por mejor decir, los llamados </strong><em><strong>branch condition</strong></em><strong> (</strong><em><strong>like the unconditional and the conditional</strong></em><strong>),</strong><em><strong> loop</strong></em><strong> (</strong><em><strong>for, while-do, do-while</strong></em><strong>), y otras que poseen ciertas proposiciones lógicas e incluso aritméticas para dar a la solución debida. Ante esto, dentro de un ciclo </strong><em><strong>while </strong></em><strong>(etiqueta o </strong><em><strong>label</strong></em><strong>) carga una cadena de bytes incrementándolo, no sin olvidar, a uno para cada carácter de la cadena (</strong><em><strong>string</strong></em><strong>) que es visualizado como a un arreglo. Luego con esto compara un registro con otro (puede ser incluso con un número inmediato) y otorga una condición booleana que dará verdadero (si cumple) o falso (sino lo cumple) como respuesta; esa misma ejecutará (saltará) hacia un bloque de instrucciones  (siempre y cuando el </strong><em><strong>flag</strong></em><strong> sea uno [</strong><em><strong>True</strong></em><strong>,verdadero], sino termina o cierra el ciclo de ejecución ). Estas instrucciones dan otras comparaciones más para saber si el </strong><em><strong>string </strong></em><strong>(cadena) es una de las letras o números de ‘0’ a ‘9’, si lo son, entonces, restará ese valor (en hexadecimal) con el número 48, pues es necesario hacerlo así, ya que son representados como valores binarios y esto satisface hacia el resultado que queremos dar. No obstante, se multiplica con el número 10 (siendo a nivel ensamblador puede representarse con la instrucción MUL o bien con LSL cuya misma es mucho mejor que el propio MUL),  y leyendo o cargando byte por byte para notificar si su término llegó a  NULL (nulo). Con esto terminará y seguirá después, como normalmente lo hace todo ensamblador, con las demás instrucciones.</strong></p><p id="56ee1d5e-f16a-4400-bb72-98ef4d2c47d8" class="">
+</p><ul id="c8868c56-23e3-4867-b39a-4cf071f5a45f" class="bulleted-list"><li style="list-style-type:disc"><strong>Epílogo (</strong><em><strong>The end</strong></em><strong>)</strong></li></ul><p id="edc2b474-b812-4738-bdae-9c12a284ef20" class=""><strong>El epílogo (el contrario amigo del prólogo) da primero el retorno del resultado hacia un registro explícito, el registro r0, que regresará, después de haber invocado la función, el valor ya calculado del programa (salida); sin embargo, se realiza después una suma (de facto, en el prólogo se realiza una resta) que sumará con el número de campos ya denotados anteriormente, luego, entonces, liberará (Pop, quitar o designar) esos valores ya concluidos o guardados con anterioridad. Finalmente, como se observa, retorna la llamada (esto es, en la etiqueta que fue incluida) denotado como “bx lr”.</strong></p><p id="1782bdaf-b00a-444d-bdea-62ef8dd55b3f" class="">
+</p><h3 id="0f310a3f-ae9b-42d4-ba0f-a43cc4ce84d2" class="">Subrutina 4. Entero_ASCII (Aquél que ahora convierte un número entero [positivo] a un carácter [<em><strong>char </strong></em>o <em>string</em>])</h3><p id="74b02436-07e9-414a-beea-b2a0e55adffc" class="">
+</p><p id="4eeec9ec-d50a-466b-8757-f5ad9b469aa5" class=""><strong>Eneas habló y esto fue lo que me dijo: “Si tus palabras anteriores han explicado ya la funcionalidad de la pila </strong><em><strong>stack</strong></em><strong>, donde se muestra cada parte que con lleva (esto es, el prólogo, el cuerpo de la función, y el epílogo), ¿Por qué no tan sólo detallar lo qué hace esa función, conocido por todo programador de lenguaje de bajo nivel, como subrutina? Harto es al piloto tener que acudir a tantos sitios sin pausa alguna”. Entonces, abreviaré esta sabiduría a un término más eficaz: la subrutina llamada como “Entero_ASCII” que posee  dos argumentos, uno para el valor numérico a convertir; y otro el espacio a almacenar (byte por byte, incrementándolo a uno), y bien lo menciona, convierte un entero cualquier a una cadena de caracteres (</strong><em><strong>string</strong></em><strong>) para facilitar el uso de la salida (imprimir el resultado final a consola) a través de un código de bajo nivel conocido por todos como ensamblador. ¿Por qué hacer esto, si ya se convirtió y almacenó mediante un arreglo, dichos números que serán luego ya ofrecidos? Imposible es otorgarlo de esta manera, puesto que el ensamblador del micro controlador M no identifica como salida o impreso números enteros o flotantes, sino identifica por cada uno de éstos una representación en hexadecimal que es llevada hacia el código ASCII , por tanto, es sumamente necesario convertir todo número a un código ASCII.</strong></p><p id="ad5f6650-0f5c-4fe5-8667-bebd9ac29429" class=""><strong>Ahora bien, ¿Cómo hacer que se convierta lo antes mencionado? En la anterior subrutina (ASCII_Entero) teníamos que por cada código ASCII (en hexadecimal) se tenía que restar con el número 48 o bien 0x30 en su representación hexal, después multiplicarlo por diez y así sucesivamente hasta ya tener el número adecuado. Pues bien; en este caso es lo contrario. Ahora en vez de restar aquello, sumamos (con el número 48, representado como 0x30) todos esos valores con el código ASCII, es decir, para convertir un dígito d, tenemos que:  </strong><em><strong>0 ≤ d ≤ 9 </strong></em><strong>para dar a corresponder a una letra, o en pocas palabras, se tiene lo siguiente: </strong><div class="indented"><p id="249b4308-b28f-496a-858d-b17377dac7c8" class="">                     character[0] = d + 0x30</p><p id="24222c0f-f328-4f79-a385-fdc454d226c2" class=""><strong>o por mejor decir:</strong></p><p id="9d3768e0-5a8d-4ef7-b747-8c7d40679b05" class="">                     character[0] = d + ‘0’</p></div></p><p id="8ff5d06f-8210-469f-b46a-4616e90c74f2" class=""><strong>Sin embargo, no es todo, porque para un número entero, por ejemplo, el “123” , debemos obtener por cada división a diez, un dígito solo para así convertirlo a su forma ASCII, mas hay un problema (al menos para el usuario), y es de que al ya dar aquello dará su forma inversa, esto es, si “123” es ya dividido y convertido se mostraría así: “321”. Cosa que, para el usuario, sería un resultado erróneo. ¿Cómo ofrecer ese número su orden inicial? Ordenar de forma inversa, iniciando con el dígito menos significativo hasta el mayor dígito significativo que éste puede poseer. Con esto se mantendría su orden original.</strong></p><h3 id="103c709f-5264-486a-bcc2-3aa7f4a6d179" class="">Función Principal: Main (<em>The Main Subroutine</em> )</h3><h3 id="ea009577-f179-4cc2-b797-7cd0497540ce" class="">Prólogo</h3><p id="a4481abf-be9e-4413-afc9-ba0331930c05" class=""><em><strong>Main </strong></em><strong>está dividido por tres secciones: arreglo, variables locales y respaldo de los registros r7 y lr.
+El arreglo será reservado por 20 bytes ya que cada elemento ocupa 4 bytes, las variables ocupan 16 bytes, desperdiciando 4 bytes por convención del ensamblador arm, así como el respaldo de r7 y lr.</strong></p><h3 id="f90d2604-0480-4810-83a3-5515dea5dde7" class="">Leer los datos del arreglo:</h3><p id="264689bc-c113-4cd0-a6fc-492d3df92dd4" class=""><strong>Para leer en cada elemento primero tendremos que pedir al compilador que lea los datas que ingresaremos para que devuelva ese valor dado y convertido en la función leer podamos guardarlo en cada elemento del arreglo empezando de menor a mayor (arreglo[0]-arreglo[4]).</strong></p><h3 id="e4d9e29c-dc26-4673-8394-774223942a89" class="">FOR 1:</h3><p id="9be7cf14-4c5d-4cd6-8c06-08dafd75a48b" class=""><strong>La primera función </strong><em><strong>for </strong></em><strong>se encargará de acceder a cada elemento del arreglo, leer lo que tiene dentro de esta y convertirlo a entero, una vez hecho lo anterior el siguiente paso a realizar será convertir el entero dado por la función y convertirla en ascii nuevamente, se repetirá hasta terminar con todos los elementos del arreglo de tamaño de 5.</strong></p><p id="e78dc4d0-47c5-4504-934c-0e64b3e11bfa" class="">
+</p><p id="c1982c8a-5ec7-4537-9b8d-a06a1276180f" class=""><strong>Después de terminar con la función, procederá a realizar una suma de los elementos que contiene el arreglo mediante una función “suma_arreglo” en el que se le pasa como argumento la dirección del arreglo y el tamaño.</strong></p><p id="1367ce38-7039-4455-bcba-a61bb91760fc" class=""><strong>En el siguiente paso realiza la conversión de entero a ascii , pasando como argumentos el tamaño del </strong><em><strong>buffer</strong></em><strong>, la dirección del </strong><em><strong>buffer </strong></em><strong>y el arreglo.</strong></p><p id="2456d062-b39c-44c1-b730-7df75ab8c9ba" class=""><strong>Como último pasa se encarga de imprimir lo que contiene el arreglo. </strong></p><h3 id="14bca483-4c1c-406e-afed-170c98dde57b" class="">Epílogo:</h3><p id="a6ce2d86-84e8-4795-aabb-8e0b3da7271b" class=""><strong>Terminando su proceso dentro de </strong><em><strong>main</strong></em><strong>, cerramos la pila devolviéndole el valor a r7 y a sp.</strong></p><p id="c6218469-fb03-4d85-a0c3-981aeb61dcdd" class="">
+</p><h2 id="f0cad6a3-9815-439e-bd3f-2ef46039c557" class="">Diagramas de las Funciones, Subrutinas.</h2><p id="7e4554c0-4ad0-4768-bf02-cbb21f6174a8" class="">
+</p><ol type="1" id="9765a87d-6506-4654-957f-2dff9a458b6a" class="numbered-list" start="1"><li><strong>Leer</strong></li></ol><p id="8e527977-3730-4e79-a13a-d36c6a698a85" class="">
+</p><p id="afc81c2b-46ee-4b2c-b2b5-6ef89e15b196" class="">
+</p><p id="6b713eae-dbd8-4641-8890-e65b4920a4ab" class="">
+</p><figure id="a4340623-c46c-4c71-ba1a-f0701c688b68" class="image"><a href="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled.png"><img style="width:336px" src="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled.png"/></a></figure><figure id="27f5415e-85de-4377-b1ac-14a83aed0c2c" class="image"><a href="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled.png"><img style="width:336px" src="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled.png"/></a></figure><p id="b020a006-fb11-4ee3-b5c6-bec3eb884735" class="">
+</p><p id="006d94fc-79ee-4fd8-a7c5-cfd02e55913d" class="">
+</p><p id="9d531faf-e1e2-4366-95a8-e71b34397b32" class="">
+</p><ol type="1" id="ca94b55a-3be3-41c8-a103-7fb03f29e992" class="numbered-list" start="2"><li><strong>Imprimir</strong></li></ol><p id="51e22f5f-aae0-4c71-87f7-0e87013e66d3" class="">
+</p><p id="0bd383b8-a7fc-49a0-a3d5-8143a99dea64" class="">
+</p><figure id="bff3b62a-6d4c-4c68-a179-e04561584c05" class="image"><a href="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled.png"><img style="width:336px" src="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled.png"/></a></figure><p id="037b1bc4-0db6-42ba-a290-fc9c08a122f1" class="">
+</p><p id="b622e0f9-0136-447f-9b09-06fe7d7c3aed" class="">
+</p><p id="4e23ecd5-b43d-4da7-9ad9-6ade8015d37d" class="">
+</p><p id="39a8346b-0d15-4b7a-9656-b095a6d7fc10" class="">
+</p><ol type="1" id="d5086d0a-8166-4520-8257-9f407883245d" class="numbered-list" start="3"><li><strong>ASCII_Entero</strong></li></ol><figure id="03528d49-6b13-4228-9b0a-ea65e79c8cf0" class="image"><a href="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled%201.png"><img style="width:1440px" src="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled%201.png"/></a></figure><p id="0e20383f-edcf-476c-a128-868fc0bdad23" class="">
+</p><ol type="1" id="8471e1ed-e253-4c8b-bedd-7e0f3d50dc84" class="numbered-list" start="4"><li><strong>Entero_ASCII</strong></li></ol><figure id="2692db2c-65a1-47d6-8d1e-918fee460e2d" class="image"><a href="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled%202.png"><img style="width:672px" src="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled%202.png"/></a></figure><p id="1d7c4105-b025-4643-accd-005cc9079f0e" class="">
+</p><ol type="1" id="491d5486-8a6f-4852-8691-ba042d7af353" class="numbered-list" start="5"><li><strong>Main:</strong></li></ol><figure id="5d191424-122e-4134-b886-504aef939acd" class="image"><a href="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled%203.png"><img style="width:522px" src="Pra%CC%81ctica_II%20e97c2d417283480d87ef4df86d891d2f/Untitled%203.png"/></a></figure><p id="6fbb6443-3a97-4e91-831b-6d7f721def07" class="">
+</p><p id="7a1ad8b8-c24c-4114-b65f-24134fe2b076" class="">
+</p><p id="38f3a97b-2905-4283-96cd-ee66a68e6991" class="">
+</p></div></article></body></html>
