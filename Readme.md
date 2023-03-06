@@ -120,27 +120,35 @@ El arreglo será reservado por 20 bytes ya que cada elemento ocupa 4 bytes, las 
 
 **Terminando su proceso dentro de *main*, cerramos la pila devolviéndole el valor a r7 y a sp.**
 
+### Función suma_arreglos
+**Esta funcion se encarga de acceder a todos los elementos del arreglo dado en los argumentos para sumarlos y puedan ser guardarlos en una variable de retorno.**
+
 ## Diagramas de las Funciones, Subrutinas.
 
 1. **Leer**
 
-<img width="168" alt="Captura de pantalla 2023-03-05 a la(s) 17 56 52" src="https://user-images.githubusercontent.com/105370860/222994352-5f6a3173-7525-4737-85a2-52d90f7981cc.png">
+<img width="501" alt="image" src="https://user-images.githubusercontent.com/105370860/223012680-2dab7a8f-3e14-4978-b286-244337d9059c.png">
 
 
-1. **Imprimir**
 
-<img width="168" alt="Captura de pantalla 2023-03-05 a la(s) 17 56 52" src="https://user-images.githubusercontent.com/105370860/222994364-3d92b4ea-cedc-4c6c-b104-77a50b6ae7e5.png">
+2. **Imprimir**
+
+<img width="501" alt="image" src="https://user-images.githubusercontent.com/105370860/223012693-f0cdaf71-d836-4faf-8687-e5699639666b.png">
 
 
-1. **ASCII_Entero**
+3. **ASCII_Entero**
 
 ![image](https://user-images.githubusercontent.com/105370860/222994855-921cdebb-35f5-44bb-9f4c-06918ab47809.png)
 
 
-1. **Entero_ASCII**
+4. **Entero_ASCII**
 
 ![image](https://user-images.githubusercontent.com/105370860/222994873-21349210-91ce-47dd-8a13-233daed9d2cb.png)
 
+5. suma_arreglos
 
-1. **Main:**
+<img width="501" alt="image" src="https://user-images.githubusercontent.com/105370860/223012440-9959ef2e-0cd8-439b-97f9-01222f2ceb96.png">
+
+
+6. **Main:**
 <img width="261" alt="Captura de pantalla 2023-03-05 a la(s) 14 59 08" src="https://user-images.githubusercontent.com/105370860/222994274-c4774ffa-bd7e-4db2-8af8-1f6ebc3a9144.png">
